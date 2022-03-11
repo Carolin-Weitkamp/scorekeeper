@@ -26,7 +26,7 @@ export default function GameForm() {
           name="nameOfGame"
           labelText="Name of game"
           placeholder="e.g. Scrabble"
-          //   onChange={handleChange}
+          onChange={handleChange}
           value={formData.nameOfGame}
           required
         />
@@ -34,7 +34,7 @@ export default function GameForm() {
           name="playerNames"
           labelText="Player names, seperated by comma"
           placeholder="e.g. Johny, Janette"
-          //   onChange={handleChange}
+          onChange={handleChange}
           value={formData.playerNames}
           required
         />
@@ -42,6 +42,10 @@ export default function GameForm() {
       </StyledForm>
     </>
   );
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
 }
 
 const StyledForm = styled.form`
