@@ -1,17 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Button from "./Button";
+import ButtonComponent from "./ButtonComponent";
 import { nanoid } from "nanoid";
+import Link from "next/link";
 
-export default function HistoryEntry({ nameOfGame, players }) {
+export default function HistoryEntryComponent({ nameOfGame, players }) {
   const [scoreToggle, setScoreToggle] = useState(false);
-
-  console.log(nanoid());
 
   return (
     <WrapperStyled>
       <GameTitleStyled>{nameOfGame}</GameTitleStyled>
-      <Button onClick={() => setScoreToggle(!scoreToggle)}>Show score</Button>
+      <ButtonComponent onClick={() => setScoreToggle(!scoreToggle)}>Show score</ButtonComponent>
       {scoreToggle &&
         players.map(({ name, score, id }) => (
           <PlayerStyled key={id}>

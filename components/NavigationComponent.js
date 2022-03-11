@@ -1,20 +1,26 @@
-import React from "react";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
-import PAGES from "../assets/pages";
+import Link from "next/link";
+import HistoryEntryComponent from "./HistoryEntryComponent";
 
-export default function NavigationComponent({}) {
-    return (
-        <StyledNav>
-            <ButtonComponent>Play</ButtonComponent>
-            <ButtonComponent>History</ButtonComponent>
-        </StyledNav>
-    )
+export default function NavigationComponent({ historyID }) {
+  return (
+    <StyledNav>
+
+          <ButtonComponent>Home</ButtonComponent>
+        
+
+      <Link href={`history/${historyID}`}>
+        <a>
+          <ButtonComponent>History</ButtonComponent>
+        </a>
+      </Link>
+    </StyledNav>
+  );
 }
 
 const StyledNav = styled.nav`
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
-  
 `;

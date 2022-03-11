@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import GameForm from '../components/GameForm'
 import NavigationComponent from '../components/NavigationComponent'
 
-export default function Home() {
+export default function Home(...props) {
   return (
     <div className={styles.container}>
       <Head>

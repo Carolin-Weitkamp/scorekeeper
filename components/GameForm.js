@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { useState } from "react";
 import InputComponent from "./InputComponent";
 import ButtonComponent from "./ButtonComponent";
+import Link from "next/link";
 
 const initialFormData = {
   nameOfGame: "",
   playerNames: "",
 };
 
-export default function GameForm() {
+export default function GameForm(...props) {
   const [formData, setFormData] = useState(initialFormData);
 
   const disabled = formData.nameOfGame === "" || formData.playerNames === "";
@@ -38,7 +39,9 @@ export default function GameForm() {
           value={formData.playerNames}
           required
         />
-        <ButtonComponent disabled={disabled}> Create game </ButtonComponent>
+        <Link href={`game/${gameID}`}>
+        <a><ButtonComponent disabled={disabled}> Create game </ButtonComponent></a>
+        </Link>
       </StyledForm>
     </>
   );
