@@ -9,7 +9,7 @@ const initialFormData = {
   playerNames: "",
 };
 
-export default function GameForm(...props) {
+export default function GameForm(gameID) {
   const [formData, setFormData] = useState(initialFormData);
 
   const disabled = formData.nameOfGame === "" || formData.playerNames === "";
@@ -19,7 +19,7 @@ export default function GameForm(...props) {
       <h1>Scorekeeper</h1>
       <StyledForm
         aria-labelledby="formHeader"
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         autoComplete="off"
       >
         <h2 id="formHeader">New Game</h2>
@@ -40,7 +40,9 @@ export default function GameForm(...props) {
           required
         />
         <Link href={`game/${gameID}`}>
-        <a><ButtonComponent disabled={disabled}> Create game </ButtonComponent></a>
+          <a>
+            <ButtonComponent disabled={disabled}> Create game </ButtonComponent>
+          </a>
         </Link>
       </StyledForm>
     </>
@@ -48,6 +50,15 @@ export default function GameForm(...props) {
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    onCreateGame({
+      nameOfGame: formData.nameOfGame,
+      playerNames: formData.playerNames.split(",").map((name) => name.trim()),
+    });
+    setFormData(initialFormData);
   }
 }
 
